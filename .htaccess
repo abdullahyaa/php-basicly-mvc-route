@@ -1,0 +1,11 @@
+RewriteEngine On
+RewriteBase /mvc-architect/
+
+# App klasörüne gelen tüm istekleri index.php'ye yönlendir
+RewriteCond %{REQUEST_URI} ^/mvc-architect/app/ [NC]
+RewriteRule ^app/(.*)$ index.php [L,QSA]
+
+# 404 hatalarını önlemek için varsa public dizinini kontrol edin
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . index.php [L]
