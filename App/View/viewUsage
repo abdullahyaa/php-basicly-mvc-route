@@ -1,0 +1,56 @@
+// Kullanım Örnekleri
+
+// Base Layout (base.php)
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <?php View::showBlock('head'); ?>
+</head>
+<body>
+    <header>
+        <h1>Header Section</h1>
+    </header>
+
+    <main>
+        <?php echo $content; ?>
+    </main>
+
+    <footer>
+        <p>Footer Section</p>
+        <?php View::showBlock('scripts'); ?>
+    </footer>
+</body>
+</html>
+<?php
+
+// Template File (home.php)
+?>
+<h2>Home Page</h2>
+<p>Welcome to the homepage!</p>
+
+<?php View::startBlock('scripts'); ?>
+<script>
+    console.log('Homepage scripts loaded.');
+</script>
+<?php View::endBlock('scripts'); ?>
+<?php
+
+// Component File (button.php)
+?>
+<button style="background-color: <?php echo $color; ?>;">Click Me</button>
+<?php
+
+// Controller Usage
+View::render('home', [
+    'title' => 'Welcome',
+    'description' => 'This is the homepage.'
+]);
+
+// Component Usage
+View::renderComponent('button', [
+    'color' => 'blue'
+]);
